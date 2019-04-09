@@ -6343,4 +6343,142 @@ public class HasPathSum112 {
         return res;
     }
 
+
+    /**
+     * 89. 格雷编码
+     *
+     * 格雷编码是一个二进制数字系统，在该系统中，两个连续的数值仅有一个位数的差异。
+     *
+     * 给定一个代表编码总位数的非负整数 n，打印其格雷编码序列。格雷编码序列必须以 0 开头。
+     *
+     * 示例 1:
+     *
+     * 输入: 2
+     * 输出: [0,1,3,2]
+     * 解释:
+     * 00 - 0
+     * 01 - 1
+     *
+     * ']/】
+     * 11 - 3
+     * 10 - 2
+     *
+     * 对于给定的 n，其格雷编码序列并不唯一。
+     * 例如，[0,2,3,1] 也是一个有效的格雷编码序列。
+     *
+     * 00 - 0
+     * 10 - 2
+     * 11 - 3
+     * 01 - 1
+     * 示例 2:
+     *
+     * 输入: 0
+     * 输出: [0]
+     * 解释: 我们定义格雷编码序列必须以 0 开头。
+     *      给定编码总位数为 n 的格雷编码序列，其长度为 2n。当 n = 0 时，长度为 20 = 1。
+     *      因此，当 n = 0 时，其格雷编码序列为 [0]
+     *
+     * @param n
+     * @return
+     */
+    public List<Integer> grayCode(int n) {
+        List<Integer> list = new ArrayList<>();
+        list.add(0);                                //n=0 {0}
+        if(n == 0) return list;
+        int increase = 1;
+        for(int i = 0;i<n;i++){                     //              n=2
+            int len = list.size();                  //              len = 2
+            for(int j = len-1;j>=0;j--){            //              {0,1,3,2}
+                list.add(list.get(j)+increase);     //n=1 {0,1}
+            }
+            increase *= 2;
+        }
+        return list;
+
+    }
+
+    public List<Integer> grayCode2(int n) {
+        List<Integer> ret = new ArrayList<>();
+        for(int i = 0; i < 1<<n; ++i)
+            ret.add(i ^ i>>1);
+        return ret;
+    }
+
+
+    /**
+     * 90. 子集 II
+     *
+     * 给定一个可能包含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
+     *
+     * 说明：解集不能包含重复的子集。
+     *
+     * 示例:
+     *
+     * 输入: [1,2,2]
+     * 输出:
+     * [
+     *   [2],
+     *   [1],
+     *   [1,2,2],
+     *   [2,2],
+     *   [1,2],
+     *   []
+     * ]
+     * @param nums
+     * @return
+     */
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums == null || nums.length == 0) {
+            return result;
+        }
+        Arrays.sort(nums);
+        List<Integer> levelList = new ArrayList<>();
+        result.add(new ArrayList<>(levelList));
+        subsetsWithDupDFS(result, levelList, 0, nums);
+        return result;
+    }
+
+    private void subsetsWithDupDFS(List<List<Integer>> result, List<Integer> levelList, int depth, int[] nums) {
+        for ( int i = depth; i < nums.length; i++ ) {
+            if ( i > depth && nums[ i - 1 ] == nums[ i ] ) {
+                continue;
+            }
+            levelList.add( nums[ i ] );
+            result.add( new ArrayList<>( levelList ) );
+            subsetsWithDupDFS( result, levelList, i + 1, nums );
+            levelList.remove( levelList.size() - 1 );
+        }
+    }
+
+    /**
+     * 91. 解码方法
+     *
+     * 一条包含字母 A-Z 的消息通过以下方式进行了编码：
+     *
+     * 'A' -> 1
+     * 'B' -> 2
+     * ...
+     * 'Z' -> 26
+     * 给定一个只包含数字的非空字符串，请计算解码方法的总数。
+     *
+     * 示例 1:
+     *
+     * 输入: "12"
+     * 输出: 2
+     * 解释: 它可以解码为 "AB"（1 2）或者 "L"（12）。
+     * 示例 2:
+     *
+     * 输入: "226"
+     * 输出: 3
+     * 解释: 它可以解码为 "BZ" (2 26), "VF" (22 6), 或者 "BBF" (2 2 6) 。
+     * @param s
+     * @return
+     */
+//    public int numDecodings(String s) {
+//
+//    }
+
+
+
 }
