@@ -506,7 +506,7 @@ public class ListNodeProblems {
      * @param n
      * @return
      */
-    public List<Integer> grayCode(int n) {
+//    public List<Integer> grayCode(int n) {
 
-    }
+//    }
 }
