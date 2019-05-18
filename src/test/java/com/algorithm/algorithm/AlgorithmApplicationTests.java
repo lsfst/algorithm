@@ -1,5 +1,7 @@
 package com.algorithm.algorithm;
 
+import com.algorithm.redis.list.RedisConsumer;
+import com.algorithm.redis.list.RedisProducer;
 import com.algorithm.skill.FindRadius475;
 import com.algorithm.skill.HasPathSum112;
 import com.algorithm.skill.MyLinkedList;
@@ -9,14 +11,19 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RunWith( SpringRunner.class )
 @SpringBootTest
 public class AlgorithmApplicationTests {
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Test
     public void contextLoads() {
@@ -200,5 +207,38 @@ public class AlgorithmApplicationTests {
     public void minWindow() {
         HasPathSum112.minWindow( "ADOBECODEBANC"
                 ,"ABC");
+    }
+
+    @Test
+    public void redisConsumer(){
+        RedisConsumer customer = new RedisConsumer("redisConsumer",redisTemplate.opsForList());
+        customer.start();
+    }
+
+    @Test
+    public void redisProducer(){
+//        RedisProducer producer1 = new RedisProducer( "redisProducer1" ,redisTemplate.opsForList());
+//        producer1.start();
+//        RedisProducer producer2 = new RedisProducer( "redisProducer2" ,redisTemplate.opsForList());
+//        producer2.start();
+
+        RedisConsumer customer = new RedisConsumer("redisConsumer",redisTemplate.opsForList());
+        customer.start();
+
+//        for ( ; ; ) {
+//            System.out.println( "main : 已存储消息条数:" + producer1.getCount() );
+//            System.out.println( "main : 已消费消息条数:" + customer.getCount() );
+//            TimeUnit.SECONDS.sleep( 10 );
+//        }
+    }
+
+
+    @Test
+    public void blpopRedis(){
+        for(;;){
+            Object obj = redisTemplate.opsForList().rightPop( "message:queue1",1000,TimeUnit.MILLISECONDS );
+            System.out.println(obj);
+        }
+
     }
 }

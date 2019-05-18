@@ -1,4 +1,4 @@
-package com.algorithm.redis.refresh;
+package com.algorithm.redis.autorefresh;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
