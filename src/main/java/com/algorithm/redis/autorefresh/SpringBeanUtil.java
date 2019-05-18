@@ -1,4 +1,4 @@
-package com.algorithm.redis.refresh;
+package com.algorithm.redis.autorefresh;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

@@ -1,4 +1,4 @@
-package com.algorithm.redis.refresh;
+package com.algorithm.redis.autorefresh;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

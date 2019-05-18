@@ -1,4 +1,4 @@
-package com.algorithm.redis.refresh;
+package com.algorithm.redis.autorefresh;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,15 +46,15 @@ public class CustomizedRedisCache extends RedisCache {
             if ( null != ttl && ttl <= preLoadTimeSecond ) {
                 logger.info( "key:{} ttl:{} preloadSecondTime:{}", cacheKey, ttl, preLoadTimeSecond );
                 if ( ThreadTaskHelper.hasRunningRefreshCacheTask( cacheKey ) ) {
-                    logger.info( "do not need to refresh" );
+                    logger.info( "do not need to autorefresh" );
                 } else {
                     ThreadTaskHelper.run( () -> {
                                 try {
                                     REFRESH_CACKE_LOCK.lock();
                                     if ( ThreadTaskHelper.hasRunningRefreshCacheTask( cacheKey ) ) {
-                                        logger.info( "do not need to refresh" );
+                                        logger.info( "do not need to autorefresh" );
                                     } else {
-                                        logger.info( "refresh key:{}", cacheKey );
+                                        logger.info( "autorefresh key:{}", cacheKey );
                                         ThreadTaskHelper.putRefreshCacheTask( cacheKey );
                                         CustomizedRedisCache.this.getCacheSupport().refreshCacheByKey( CustomizedRedisCache.super.getName(), key.toString() );
                                         ThreadTaskHelper.removeRefreshCacheTask( cacheKey );

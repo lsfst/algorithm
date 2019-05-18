@@ -1,6 +1,7 @@
-package com.algorithm.redis.refresh;
+package com.algorithm.redis.autorefresh;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
@@ -91,6 +92,7 @@ public class RedisConfig extends CachingConfigurerSupport {
 
 
     @Bean(name = "redisTemplate")
+    @Qualifier(value = "redisTemplate")
     RedisTemplate<String, Object> redisTemplate() {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(getConnectionFactory());
