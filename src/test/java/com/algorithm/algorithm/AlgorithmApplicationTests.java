@@ -1,12 +1,10 @@
 package com.algorithm.algorithm;
 
 import com.algorithm.redis.list.RedisConsumer;
-import com.algorithm.redis.list.RedisProducer;
-import com.algorithm.skill.FindRadius475;
-import com.algorithm.skill.HasPathSum112;
-import com.algorithm.skill.MyLinkedList;
-import com.algorithm.skill.NextGreaterElement;
-import org.junit.After;
+import com.algorithm.leetcode.FindRadius475;
+import com.algorithm.leetcode.HasPathSum112;
+import com.algorithm.leetcode.MyLinkedList;
+import com.algorithm.leetcode.NextGreaterElement;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @RunWith( SpringRunner.class )

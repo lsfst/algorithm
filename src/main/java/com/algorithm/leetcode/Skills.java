@@ -9,7 +9,7 @@
  * @history 修订说明
  * 20181119 Chris 初始版本
  */
-package com.algorithm.skill;
+package com.algorithm.leetcode;
 
 /**
  * @author lsf

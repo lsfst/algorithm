@@ -9,9 +9,7 @@
  * @history 修订说明
  * 20190213    gaoyouan     初始版本
  */
-package com.algorithm.skill;
-
-import sun.reflect.generics.tree.Tree;
+package com.algorithm.leetcode;
 
 /**
  * @brief

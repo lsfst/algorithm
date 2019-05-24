@@ -9,7 +9,7 @@
  * @history 修订说明
  * 20190126    gaoyouan     初始版本
  */
-package com.algorithm.skill;
+package com.algorithm.leetcode;
 
 import java.util.*;
 
