@@ -9,10 +9,7 @@
  * @history 修订说明
  * 20190211    gaoyouan     初始版本
  */
-package com.algorithm.skill;
-
-import javafx.util.Pair;
-import org.springframework.stereotype.Component;
+package com.algorithm.leetcode;
 
 import java.util.*;
 import java.util.stream.Collectors;

@@ -62,6 +62,11 @@ import java.util.concurrent.*;
         @Override
         public void run() {
             while (!stop) {
+                try {
+                    Thread.sleep( 100 );
+                } catch ( InterruptedException e ) {
+                    logger.info( "sleep interrupted|{}",e.getMessage() );
+                }
                 cousume();
             }
         }
