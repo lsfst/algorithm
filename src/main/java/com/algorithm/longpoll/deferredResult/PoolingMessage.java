@@ -1,19 +1,23 @@
 package com.algorithm.longpoll.deferredResult;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class PoolingMessage {
 
     private String vid;
     private long lastConnectime;
-    private String message;
+    private Map<String,String> message;
 
     public PoolingMessage( String vid){
-        this(vid,"");
+        this(vid,"","");
     }
 
-    public PoolingMessage( String vid, String message){
+    public PoolingMessage( String vid, String type, String message){
         this.vid = vid;
         this.lastConnectime = System.currentTimeMillis();
-        this.message = message;
+        this.message = new HashMap<>();
+        this.message.put( type,message );
     }
 
     public String getVid() {
@@ -32,11 +36,19 @@ public class PoolingMessage {
         this.lastConnectime = lastConnectime;
     }
 
-    public String getMessage() {
+    public Map< String, String> getMessage() {
         return message;
     }
 
-    public void setMessage( String message ) {
+    public void setMessage( Map message ) {
         this.message = message;
     }
+
+    public void setMessage( String type,String msg) {
+        if(this.message==null){
+            this.message = new HashMap<>(  );
+        }
+        this.message.put( type,msg );
+    }
+
 }
