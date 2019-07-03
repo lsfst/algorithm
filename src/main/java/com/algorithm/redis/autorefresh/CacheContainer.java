@@ -18,7 +18,7 @@ public class CacheContainer {
 
     private static final CacheItemConfig cacheItemConfig = new CacheItemConfig( DEFAULT_CACHE_NAME,40,25 );
 
-    private static final Map<String,CacheItemConfig> CACHE_CONFIG_HOLDER=new ConcurrentHashMap(){
+    private static final Map<String, CacheItemConfig> CACHE_CONFIG_HOLDER=new ConcurrentHashMap(){
         {
             put(DEFAULT_CACHE_NAME,cacheItemConfig);
         }

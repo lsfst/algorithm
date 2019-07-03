@@ -46,15 +46,15 @@ public class CustomizedRedisCache extends RedisCache {
             if ( null != ttl && ttl <= preLoadTimeSecond ) {
                 logger.info( "key:{} ttl:{} preloadSecondTime:{}", cacheKey, ttl, preLoadTimeSecond );
                 if ( ThreadTaskHelper.hasRunningRefreshCacheTask( cacheKey ) ) {
-                    logger.info( "do not need to autorefresh" );
+                    logger.info( "do not need to refresh" );
                 } else {
                     ThreadTaskHelper.run( () -> {
                                 try {
                                     REFRESH_CACKE_LOCK.lock();
                                     if ( ThreadTaskHelper.hasRunningRefreshCacheTask( cacheKey ) ) {
-                                        logger.info( "do not need to autorefresh" );
+                                        logger.info( "do not need to refresh" );
                                     } else {
-                                        logger.info( "autorefresh key:{}", cacheKey );
+                                        logger.info( "refresh key:{}", cacheKey );
                                         ThreadTaskHelper.putRefreshCacheTask( cacheKey );
                                         CustomizedRedisCache.this.getCacheSupport().refreshCacheByKey( CustomizedRedisCache.super.getName(), key.toString() );
                                         ThreadTaskHelper.removeRefreshCacheTask( cacheKey );

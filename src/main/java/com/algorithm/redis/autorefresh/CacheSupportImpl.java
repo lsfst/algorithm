@@ -24,9 +24,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CacheSupportImpl implements CacheSupport,InvocationRegistry {
 
     /**
-     * 记录容器与所有执行方法信息
+     * 记录容器与所有执行x方法信息
      */
-    private Map<String, Map<String,CachedInvocation>> cacheToInvocationsMap;
+    private Map<String, Map<String, CachedInvocation>> cacheToInvocationsMap;
 
     @Autowired
     private CacheManager cacheManager;
@@ -61,7 +61,7 @@ public class CacheSupportImpl implements CacheSupport,InvocationRegistry {
 
     @PostConstruct
     public void initialize() {
-        cacheToInvocationsMap = new ConcurrentHashMap<String, Map<String,CachedInvocation>>(cacheManager.getCacheNames().size());
+        cacheToInvocationsMap = new ConcurrentHashMap<String, Map<String, CachedInvocation>>(cacheManager.getCacheNames().size());
             for (final String cacheName : cacheManager.getCacheNames()) {
                 cacheToInvocationsMap.put(cacheName, new ConcurrentHashMap<>());
             }
