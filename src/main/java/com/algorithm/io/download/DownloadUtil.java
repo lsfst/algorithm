@@ -149,7 +149,10 @@ public class DownloadUtil {
                         File[] files = inputFile.listFiles();
                         List<String> filePathsTem = new ArrayList<String>();
                         for (File fileTem:files) {
-                            filePathsTem.add(fileTem.toString());
+                            if(files!=null){
+
+                                filePathsTem.add(fileTem.toString());
+                            }
                         }
                         return zipFile(zipBasePath, zipName, zipFilePath, filePathsTem,zos);
                     } catch (Exception e) {

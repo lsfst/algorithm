@@ -19,10 +19,10 @@ public class Memoizer<A,V> implements Computable<A,V> {
     }
 
     @Override
-    public synchronized V compute(A arg) throws InterruptedException {
+    public synchronized V get(A arg) throws InterruptedException {
         V result = cache.get(arg);
         if(result==null){
-            result = c.compute(arg);
+            result = c.get(arg);
             cache.put(arg,result);
         }
         return result;

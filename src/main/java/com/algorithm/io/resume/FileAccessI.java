@@ -15,13 +15,6 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.io.Serializable;
 
-/**
- * @brief
- *    TODO 类功能作用及实现逻辑说明
- *
- * @see
- *
- */
 public class FileAccessI implements Serializable {
     RandomAccessFile oSavedFile;
     long nPos;

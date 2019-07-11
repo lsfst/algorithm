@@ -19,13 +19,13 @@ public class Memoizer3<A,V> implements Computable<A,V> {
     }
 
     @Override
-    public V compute(A arg) throws InterruptedException {
+    public V get(A arg) throws InterruptedException {
         Future<V> f = cache.get(arg);
         if(f == null){
             Callable<V> eval = new Callable<V>() {
                 @Override
                 public V call() throws Exception {
-                    return c.compute(arg);
+                    return c.get(arg);
                 }
             };
             FutureTask<V> ft = new FutureTask<>(eval);

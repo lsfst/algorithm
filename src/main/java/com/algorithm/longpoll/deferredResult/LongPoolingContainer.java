@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -46,7 +47,7 @@ public class LongPoolingContainer {
     //SynchronizedMultimap 虽是并发容器，但多线程下遍历时进行修改还是会出现ConcurrentModificationException，需要对remove和遍历操作上锁
     private ReentrantLock lock = new ReentrantLock();
 
-//    private static boolean stop = false;
+    private static AtomicBoolean isStarted = new AtomicBoolean(false);
 
 
     public static Map< String, String > default_result = new HashMap< String, String >() {{
@@ -54,7 +55,7 @@ public class LongPoolingContainer {
     }};
 
     public LongPoolingContainer() {
-        if ( ECConstants.LONG_POLL_START ) {
+        if ( ECConstants.LONG_POLL_START && isStarted.compareAndSet(false,true) ) {
             LongPollTask task = new LongPollTask();
             executor.scheduleWithFixedDelay( task, 2, 1, TimeUnit.SECONDS );
         }
