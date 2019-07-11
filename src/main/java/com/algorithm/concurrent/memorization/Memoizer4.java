@@ -8,7 +8,6 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * @program algorithm
  * @description:采用putIfAbsent操作保证原子性
- * 不足之处是没有解决缓存逾期和缓存清理问题
  * @author: liangshaofeng
  * @create: 2019/06/28 23:24
  */
